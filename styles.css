@@ -1,0 +1,20 @@
+html, body{
+    min-height: 100vh;
+}
+body{
+    display:flex;
+    flex: 0 0 ;
+}
+
+button{
+    height: 30px;
+}
+.container{
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    height: 800px;
+    width: 800px;
+
+}
+
