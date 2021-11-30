@@ -3,9 +3,23 @@ let colorChoice = 'purple';
 let isBrushDown = false;
 let currentButton = "";
 let gridSize = '256';
-createGrid(gridSize);
-const container = document.querySelector('.container')
+
+
+const blueButton = document.getElementById('blue');
+const container = document.querySelector('.container');
+const redButton = document.getElementById('red');
+const purpleButton = document.getElementById('purple');
+const randomButton = document.getElementById('random');
+const sixteenbysixteen = document.getElementById('sixteenbysixteen');
+const fourbyfour = document.getElementById('fourbyfour');
+const eightbyeight = document.getElementById('eightbyeight');
+const boxes = document.querySelectorAll('.gridBox');
+const reset = document.getElementById('reset'); //make button call resetAll on click
+
+
 container.addEventListener('click',brushToggle);
+reset.addEventListener('click',resetAll);
+
 function brushToggle (){
   console.log('toggle!')
   if (isBrushDown == false){
@@ -39,9 +53,7 @@ function createBox (n){
     if (isBrushDown){
       box.style.backgroundColor = colorChoice;
     }  
-
   }
-  console.log(box.className);
   return box;
 }
 
@@ -52,55 +64,50 @@ function createGrid(n){
   for (let i=0; i<n; i++){
     let box = createBox(n);
     container.appendChild(box)
-  }
+}}
 
-}
 
-const blueButton = document.getElementById('blue');
 blueButton.addEventListener('click', ()=>{
     colorChoice = 'blue'; 
     console.log(colorChoice);
     currentButton = "bluebutton";
-  }) 
+}) 
 
-const redButton = document.getElementById('red');
- redButton.addEventListener('click', ()=>{
-      colorChoice = 'red'; 
-      console.log(colorChoice);
-      currentButton = "redbutton";
+redButton.addEventListener('click', ()=>{
+    colorChoice = 'red'; 
+    console.log(colorChoice);
+    currentButton = "redbutton";
 })   
-const purpleButton = document.getElementById('purple');
-  purpleButton.addEventListener('click', ()=>{
-  colorChoice = 'purple'; 
-  console.log(colorChoice);
-  currentButton = "purplebutton";
-}) 
-const randomButton = document.getElementById('random');
-  randomButton.addEventListener('click', ()=>{
-  colorChoice = getRandomColor(); 
-  console.log(colorChoice);
-  currentButton = "randombutton";
+
+purpleButton.addEventListener('click', ()=>{
+    colorChoice = 'purple'; 
+    console.log(colorChoice);
+    currentButton = "purplebutton";
 }) 
 
-const fourbyfour = document.getElementById('fourbyfour');
-  fourbyfour.addEventListener('click',() => {
+randomButton.addEventListener('click', ()=>{
+    colorChoice = getRandomColor(); 
+    console.log(colorChoice);
+    currentButton = "randombutton";
+}) 
+
+fourbyfour.addEventListener('click',() => {
     gridSize = 16;
     removeAllChildNodes(container);
     createGrid(gridSize);
-  });
-const eightbyeight = document.getElementById('eightbyeight');
-  eightbyeight.addEventListener('click', () =>{
+});
+
+eightbyeight.addEventListener('click', () =>{
     gridSize = 64;
     removeAllChildNodes(container);
     createGrid(gridSize);
-  });
-const sixteenbysixteen = document.getElementById('sixteenbysixteen');
-  sixteenbysixteen.addEventListener('click', () => {
+});
+
+sixteenbysixteen.addEventListener('click', () => {
     gridSize = 256;
     removeAllChildNodes(container);
     createGrid(gridSize);
-  });   
-
+});   
 
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
@@ -110,12 +117,6 @@ function getRandomColor() {
   }
   return color;
 }
-
-
-const boxes = document.querySelectorAll('.gridBox');
-
-const reset = document.getElementById('reset'); //make button call resetAll on click
-reset.addEventListener('click',resetAll);
 
 function resetAll(){ //sets all boxes to grey essentially resetting the board
   const boxes = document.querySelectorAll('.gridBox'); 
@@ -128,16 +129,16 @@ function removeAllChildNodes(parent) {
   }
 }
 
-
 const deviceType = () => {
   const ua = navigator.userAgent;
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
       alert( "tablet functionality not supported yet, please access from your browser");
   }
   else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-      alert( "mobile  not supported yet, please access from your computer browser");
+      alert( "mobile not supported yet, please access from your computer browser");
   }
   return "desktop";
 };
 
 deviceType();
+createGrid(gridSize);
