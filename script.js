@@ -128,14 +128,16 @@ function removeAllChildNodes(parent) {
   }
 }
 
-deviceType();
+
 const deviceType = () => {
   const ua = navigator.userAgent;
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
       alert( "tablet functionality not supported yet, please access from your browser");
   }
   else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-      alert( "mobile functionality not supported yet, please access from your computer browser");
+      alert( "mobile  not supported yet, please access from your computer browser");
   }
   return "desktop";
 };
+
+deviceType();
