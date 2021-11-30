@@ -1,12 +1,23 @@
 
 let colorChoice = 'purple';
-let isMouseDown = false;
+let isBrushDown = false;
 let currentButton = "";
-let gridSize = '64';
+let gridSize = '256';
 createGrid(gridSize);
 const container = document.querySelector('.container')
-container.addEventListener('mousedown',()=> {isMouseDown = true});
-container.addEventListener('mouseup', ()=> {isMouseDown = false});
+container.addEventListener('click',brushToggle);
+function brushToggle (){
+  console.log('toggle!')
+  if (isBrushDown == false){
+    isBrushDown = true;
+    return;
+  }
+    if (isBrushDown == true){
+      isBrushDown = false;
+      return;
+    }
+  console.log(isBrushDown);  
+}
 
 function createBox (n){
   let width = 800/(Math.sqrt(n));
@@ -21,12 +32,11 @@ function createBox (n){
   box.style.margin = '1px';
   box.draggable = false;
   box.addEventListener('mouseover',draw);
-  box.addEventListener('mousedown', ()=> box.style.backgroundColor = colorChoice);
   function draw(){
     if (currentButton == 'randombutton'){
         colorChoice = getRandomColor();
     }
-    if (isMouseDown){
+    if (isBrushDown){
       box.style.backgroundColor = colorChoice;
     }  
 
@@ -108,7 +118,7 @@ const reset = document.getElementById('reset'); //make button call resetAll on c
 reset.addEventListener('click',resetAll);
 
 function resetAll(){ //sets all boxes to grey essentially resetting the board
-  console.log(boxes); 
+  const boxes = document.querySelectorAll('.gridBox'); 
   boxes.forEach((me)=>me.style.backgroundColor = 'grey'); 
 }
 
