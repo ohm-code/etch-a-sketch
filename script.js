@@ -46,6 +46,11 @@ function createBox (n){
   box.style.margin = '1px';
   box.draggable = false;
   box.addEventListener('mouseover',draw);
+  box.addEventListener('click', ()=> {
+    if (currentButton == 'randombutton'){
+      colorChoice = getRandomColor();}
+    else box.style.backgroundColor = colorChoice;  
+  } )
   function draw(){
     if (currentButton == 'randombutton'){
         colorChoice = getRandomColor();
